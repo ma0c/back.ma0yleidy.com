@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+        - "5477:5432"
+#  web:
+#    build: .
+#    command: python manage.py runserver 0.0.0.0:8000
+#    volumes:
+#      - .:/code
+#    ports:
+#      - "8000:8000"
+#    stdin_open: true
+#    tty: true
+#    env_file:
+#      - docker-compose.env
+#    environment:
+#      - DB_NAME=postgres
+#      - DB_USER=postgres
+#      - DB_PASSWORD=postgres
+#      - DB_HOST=db
+#      - DB_PORT=5432
+#    depends_on:
+#      - db
