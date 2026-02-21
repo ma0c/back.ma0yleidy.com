@@ -9,3 +9,5 @@ docker-compose.env
 db.sqlite3
 
 data
+
+infrastructure/00_nginx_gunicorn/*.conf
