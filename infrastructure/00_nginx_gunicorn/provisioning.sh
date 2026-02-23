@@ -52,6 +52,7 @@ EnvironmentFile=/etc/gunicorn/back.ma0yleidy.com.conf
 WorkingDirectory=/home/ubuntu/projects/back.ma0yleidy.com
 ExecStart=/home/ubuntu/projects/back.ma0yleidy.com/venv/bin/gunicorn \
           --access-logfile - \
+          --capture-output \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
           ma0yleidy_back.wsgi:application
@@ -85,6 +86,9 @@ server {
     location / {
         include proxy_params;
         proxy_pass http://unix:/run/gunicorn.sock;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
     }
 }
 EOL
