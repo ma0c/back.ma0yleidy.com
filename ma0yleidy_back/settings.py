@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+from storages.backends.s3boto3 import S3Boto3Storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -166,3 +167,43 @@ CORS_ALLOWED_ORIGINS = [
     'https://test.los30randomdema0.com',
     'https://app.los30randomdema0.com',
 ]
+
+
+# Static storage
+
+STORAGES = {
+    'default': {
+        'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+    },
+    'staticfiles': {
+        'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+},
+}
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+
+# Tell Django to use the S3Boto3 storage class for static files.
+# Set the static and media files locations
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+
+
+# Define custom storage classes for static and media files
+class StaticStorage(S3Boto3Storage):
+    location = STATICFILES_LOCATION
+
+
+# class MediaStorage(S3Boto3Storage):
+#     location = MEDIAFILES_LOCATION
+#     file_overwrite = False
+
+
+# Configure static and media files storage
+STATICFILES_STORAGE = 'ma0yleidy_back.settings.StaticStorage'
+# DEFAULT_FILE_STORAGE = 'ma0yleidy_back.settings.MediaStorage'
+
+# Set static and media URLs
+STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{STATICFILES_LOCATION}/'
+# MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{MEDIAFILES_LOCATION}/'
