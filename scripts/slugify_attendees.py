@@ -81,7 +81,9 @@ def extra_invitees_and_remap():
         "samuel-y-maria": "Nereida y Kathe",
         "juan-esteban-bedoya": "Milton",
         "kathe-y-ross": "Kathe Martinez y Ross Smith",
-        "luisa": "Luisa"
+        "luisa": "Luisa",
+        "juan-pablo": "Juan Pablo",
+        "isabella": "Isabella",
     }
 
 
