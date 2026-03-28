@@ -74,7 +74,26 @@ def get_cleaned_invitees_list(invitees_list):
             cleaned_invitees.append(cleaned_invitee)
     return cleaned_invitees
 
+def extra_invitees_and_remap():
+    return {
+        "gessiel": "Gessiel y Sebastian",
+        "yazmin-y-nore": "Yazmin",
+        "samuel-y-maria": "Nereida y Kathe",
+        "juan-esteban-bedoya": "Milton",
+        "kathe-y-ross": "Kathe Martinez y Ross Smith",
+        "luisa": "Luisa"
+    }
+
+
+def get_full_invitee_mapping():
+    return {
+        **dict(zip(get_cleaned_invitees_list(INVITEES_LIST), INVITEES_LIST.splitlines())),
+        **extra_invitees_and_remap()
+    }
 
 if __name__ == "__main__":
     # print(get_cleaned_invitees_list(INVITEES_LIST))
-    print(dict(zip(get_cleaned_invitees_list(INVITEES_LIST), INVITEES_LIST.splitlines())))
+    print(get_full_invitee_mapping())
+
+
+

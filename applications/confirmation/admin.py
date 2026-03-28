@@ -3,7 +3,7 @@ from .models import Confirmation
 
 # Register your models here.
 class ConfirmationAdmin(admin.ModelAdmin):
-    list_display = ('slug', 'is_confirmed')
+    list_display = ('slug', 'name', 'is_confirmed', 'minutes')
     search_fields = ('slug',)
 
 
