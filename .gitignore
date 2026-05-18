@@ -11,3 +11,4 @@ db.sqlite3
 data
 
 infrastructure/00_nginx_gunicorn/*.conf
+infrastructure/dump.sql
